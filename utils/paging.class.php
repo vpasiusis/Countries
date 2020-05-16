@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Sąrašo puslapių kūrimo klasė
- *
- * @author ISK
- */
 
 class paging {
 	private $pageRange;

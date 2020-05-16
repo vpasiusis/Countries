@@ -11,7 +11,8 @@
 				echo $formErrors;
 			?>
 		</div>
-	<?php } ?>
+	<?php  } ?>
+
 	<form action="" method="post">
 		<fieldset>
 			<legend>Country information</legend>

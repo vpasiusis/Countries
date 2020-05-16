@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="586bf3fa-6b43-4b87-b3f7-d7bffa377c6f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/utils/messages.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controls/country_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controls/country_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/cities.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/cities.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controls/country_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/countries_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/countries_list.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/country_form.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/country_form.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/paging.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/utils/paging.class.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589543872467</updated>
       <workItem from="1589543874267" duration="10134000" />
-      <workItem from="1589626859194" duration="12269000" />
+      <workItem from="1589626859194" duration="17163000" />
     </task>
     <servers />
   </component>
@@ -89,14 +95,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1440.860@0.0.1536.824" timestamp="1589627236060" />
-    <state x="576" y="227" key="NewPhpClassDialog" timestamp="1589546430410">
+    <state x="576" y="227" key="NewPhpClassDialog" timestamp="1589646678834">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="576" y="227" key="NewPhpClassDialog/0.0.1536.824/1920.0.1440.860@0.0.1536.824" timestamp="1589546430410" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1589545385036">
+    <state x="576" y="227" key="NewPhpClassDialog/0.0.1536.824/1920.0.1440.860@0.0.1536.824" timestamp="1589646678834" />
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1589646664420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1440.860@0.0.1536.824" timestamp="1589545385036" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824/1920.0.1440.860@0.0.1536.824" timestamp="1589646664420" />
     <state x="463" y="10" width="611" height="804" key="find.popup" timestamp="1589643093620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

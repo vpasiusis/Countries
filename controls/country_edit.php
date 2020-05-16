@@ -43,7 +43,8 @@ if(!empty($_POST['submit'])) {
 
 
 		if($formErrors == null) {
-			header("Location: index.php?module={$module}&action=list");
+            $editSuccessParameter = '&edit_success=1';
+			header("Location: index.php?module={$module}&action=list{$editSuccessParameter}");
 			die();
 		}
 	} else {
