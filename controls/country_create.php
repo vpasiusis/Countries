@@ -5,6 +5,7 @@ $countriesObj = new countries();
 
 
 $formErrors = null;
+$formMessage = null;
 $data = array();
 //'vardas', 'pavarde', 'statymu_kiekis', 'balansas', 'registravimo_data', 'asmens_kodas', 'telefonas', 'gimimo_data',
 	// 'ip', 'kliento_busena', 'fk_LAZYBOS_PUNKTASid_LAZYBOS_PUNKTAS'
@@ -38,34 +39,22 @@ if(!empty($_POST['submit'])) {
 		// patikriname, ar nėra sutarčių su tokiu pačiu numeriu
 		$tmp = $countriesObj->getCountry($dataPrepared['name']);
 
-		if(isset($tmp['nr'])) {
-			// sudarome klaidų pranešimą
-			$formErrors = "Sutartis su įvestu numeriu jau egzistuoja.";
-			// laukų reikšmių kintamajam priskiriame įvestų laukų reikšmes
+		if(isset($tmp['name'])) {
+			$formErrors = "Country already exists";
 			$data = $_POST;
 		} else {
-			// įrašome naują sutartį
 			$countriesObj->insertCountry($dataPrepared);
 		}
 		
 		// nukreipiame vartotoją į sutarčių puslapį
 		if($formErrors == null) {
-			header("Location: index.php?module={$module}&action=list");
-			die();
+            $createSuccessParameter = '&create_success=1';
+			header("Location: index.php?module={$module}&action=list{$createSuccessParameter}");
+            die();
 		}
 	} else {
-		// gauname klaidų pranešimą
 		$formErrors = $validator->getErrorHTML();
 
-		// laukų reikšmių kintamajam priskiriame įvestų laukų reikšmes
-		$data = $_POST;
-		if(isset($_POST['kiekiai']) && sizeof($_POST['kiekiai']) > 0) {
-			$i = 0;
-			foreach($_POST['kiekiai'] as $key => $val) {
-				$data['uzsakytos_paslaugos'][$i]['kiekis'] = $val;
-				$i++;
-			}
-		}
 	}
 }
 
