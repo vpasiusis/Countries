@@ -14,7 +14,7 @@
         <th>Population(Millions)</th>
         <th>Area(squared km)</th>
         <th>Phone nr.</th>
-        <th></th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -29,8 +29,9 @@
             . "<td>{$val['area']}</td>"
             . "<td>{$val['phone_nr']}</td>"
             . "<td>"
-            .   "<button type=\"button\" onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\"); return false;' title='' class=\"btn btn-info\">Remove</button>"
-            .   "<a href='index.php?module={$module}&action=edit&id={$val['id']}' title=''>redaguoti</a>"
+            .   "<button onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\"); return false;' title='' class=\"btn btn-info\">Remove</button>"
+            .   "<button onclick=\"location.href='index.php?module={$module}&action=edit&id={$val['id']}'\" title=''>Edit</button>"
+            .   "<button onclick=\"location.href='index.php?module=cities&action=list&cid={$val['id']}'\" title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>Cities</button>"
             . "</td>"
             . "</tr>";
     }

@@ -1,31 +1,34 @@
 <?php
 	
 include 'libraries/countries.class.php';
-$contractsObj = new countries();
+$countriesObj = new countries();
 
 include 'libraries/cities.class.php';
-$servicesObj = new cities();
+$citiesObj = new cities();
 
 $formErrors = null;
 $data = array();
 
 // nustatome privalomus laukus
-$required = array('pavadinimas', 'kodas', 'punktu_skaicius', 'pelnas');
-$country_id=($_GET['id']);
+$required = array('name', 'area', 'population', 'postal_code', 'fk_salys');
+$countryName=($_GET['countryname']);
+$country = $countriesObj->getCountry($countryName);
 // maksimalūs leidžiami laukų ilgiai
 $maxLengths = array (
-	'pavadinimas' => 40,
+	'name' => 40,
 	'aprasymas' => 300
 );
 
 // paspaustas išsaugojimo mygtukas
 if(!empty($_POST['submit'])) {
 	// nustatome laukų validatorių tipus
-	$validations = array (
-		'pavadinimas' => 'anything',
-		'kodas' => 'positivenumber',
-		'punktu_skaicius' => 'positivenumber',
-		'pelnas' => 'positivenumber');
+    $validations = array (
+        'name' => 'anything',
+        'area' => 'positivenumber',
+        'population' => 'positivenumber',
+        'postal_code' => 'anything',
+        'fk_salys' => 'positivenumber',
+    );
 
 	// sukuriame validatoriaus objektą
 	include 'utils/validator.class.php';
@@ -37,51 +40,28 @@ if(!empty($_POST['submit'])) {
 		$dataPrepared = $validator->preparePostFieldsForSQL();
 
 		// atnaujiname duomenis
-		$servicesObj->updateService($dataPrepared);
+		$citiesObj->updateCity($dataPrepared,$country['id'],$id);
 
-		// pašaliname paslaugos kainas, kurios nėra naudojamos sutartyse
-		$deleteQueryClause = "";
-		if(sizeof($dataPrepared['kainos']) > 0) {
-			foreach($dataPrepared['kainos'] as $key=>$val) {
-				if($dataPrepared['neaktyvus'][$key] == 1) {
-					$deleteQueryClause .= " AND NOT `galioja_nuo`='" . $dataPrepared['datos'][$key] . "'";
-				}
-			}
-		}
-		$servicesObj->deleteServicePrices($dataPrepared['id'], $deleteQueryClause);
-
-		// atnaujiname paslaugos kainas, kurios nėra naudojamos sutartyse
-		$servicesObj->insertServicePrices($dataPrepared);
 
 		// nukreipiame į paslaugų puslapį
-		header("Location: index.php?module={$module}&action=list");
+        header("Location: index.php?module={$module}&action=list&cid={$country['id']}");
 
-		die();
+        die();
 	} else {
 		// gauname klaidų pranešimą
 		$formErrors = $validator->getErrorHTML();
-		// gauname įvestus laukus
-		$data = $_POST;
-		if(isset($_POST['kainos']) && sizeof($_POST['kainos']) > 0) {
-			$i = 0;
-			foreach($_POST['kainos'] as $key => $val) {
-				$data['paslaugos_kainos'][$i]['kaina'] = $val;
-				$data['paslaugos_kainos'][$i]['galioja_nuo'] = $_POST['datos'][$key];
-				$data['paslaugos_kainos'][$i]['neaktyvus'] = $_POST['neaktyvus'][$key];
-				$i++;
-			}
-		}
+
+
 	}
 } else {
-	// tikriname, ar nurodytas elemento id. Jeigu taip, išrenkame elemento duomenis ir jais užpildome formos laukus.
 	if(!empty($id)) {
-		$data = $servicesObj->getService($id);
+		$data = $citiesObj->getCity($id);
 		
 	
 	}
 }
 
 // įtraukiame šabloną
-include 'templates/service_form.tpl.php';
+include 'templates/city_form.tpl.php';
 
 ?>

@@ -30,7 +30,7 @@
 	}
 	
 	// nustatome, kurį valdiklį įtraukti šablone main.tpl.php
-	$actionFile = "";
+	$actionFile = "list";
 	if(!empty($module) && !empty($action)) {
 		$actionFile = "controls/{$module}_{$action}.php";
 	}

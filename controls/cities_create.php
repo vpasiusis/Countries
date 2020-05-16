@@ -1,18 +1,18 @@
 <?php
 	
 include 'libraries/countries.class.php';
-$contractsObj = new countries();
+$countriesObj = new countries();
 
 include 'libraries/cities.class.php';
-$servicesObj = new cities();
+$citiesObj = new cities();
 
 $formErrors = null;
 $data = array();
 
 // nustatome privalomus laukus
-$required = array('name', 'area', 'population', 'postal_code', 'add_date', 'fk_salys');
+$required = array('name', 'area', 'population', 'postal_code', 'fk_salys');
 $countryName=($_GET['countryname']);
-var_dump("asd");
+$country = $countriesObj->getCountry($countryName);
 // maksimalūs leidžiami laukų ilgiai
 $maxLengths = array (
 	'name' => 40,
@@ -26,7 +26,6 @@ if(!empty($_POST['submit'])) {
 		'area' => 'positivenumber',
 		'population' => 'positivenumber',
 		'postal_code' => 'anything',
-        'add_date' => 'date',
         'fk_salys' => 'positivenumber',
     );
 
@@ -40,28 +39,16 @@ if(!empty($_POST['submit'])) {
 		$dataPrepared = $validator->preparePostFieldsForSQL();
 		
 		// įrašome naują pasaugą ir gauname jos id
-		$dataPrepared['id'] = $servicesObj->insertService($dataPrepared);
-		
-		// įrašome paslaugų kainas
-		$servicesObj->insertServicePrices($dataPrepared);
+		$dataPrepared['id'] = $citiesObj->insertCity($dataPrepared,$country['id']);
 
-		// nukreipiame į modelių puslapį
-		header("Location: index.php?module={$module}&action=list");
+
+		header("Location: index.php?module={$module}&action=list&cid={$country['id']}");
 		die();
 	} else {
 		// gauname klaidų pranešimą
 		$formErrors = $validator->getErrorHTML();
 		// gauname įvestus laukus
-		$data = $_POST;
-		if(isset($_POST['kainos']) && sizeof($_POST['kainos']) > 0) {
-			$i = 0;
-			foreach($_POST['kainos'] as $key => $val) {
-				$data['paslaugos_kainos'][$i]['kaina'] = $val;
-				$data['paslaugos_kainos'][$i]['galioja_nuo'] = $_POST['datos'][$key];
-				$data['paslaugos_kainos'][$i]['neaktyvus'] = $_POST['neaktyvus'][$key];
-				$i++;
-			}
-		}
+
 	}
 }
 

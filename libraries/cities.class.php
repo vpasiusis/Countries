@@ -5,16 +5,16 @@
  * @author ISK
  */
 
-class services {
+class cities {
 	
 	
-	private $lazybos_bendroves_lentele = '';
+	private $cities_table = '';
 	private $sutartys_lentele = '';
 	private $paslaugu_kainos_lentele = '';
 	private $uzsakytos_lazybos_bendroves_lentele = '';
 	
 	public function __construct() {
-		$this->lazybos_bendroves_lentele = config::DB_PREFIX . 'LAZYBOS_BENDROVES';
+		$this->cities_table = config::DB_PREFIX . 'miestai';
 	
 	}
 
@@ -24,7 +24,7 @@ class services {
 	 * @param type $offset
 	 * @return type
 	 */
-	public function getServicesList($limit = null, $offset = null) {
+	public function getCitiesList($limit = null, $offset = null, $coutry_id) {
 		$limitOffsetString = "";
 		if(isset($limit)) {
 			$limitOffsetString .= " LIMIT {$limit}";
@@ -34,7 +34,7 @@ class services {
 		}
 		
 		$query = "  SELECT *
-					FROM `{$this->lazybos_bendroves_lentele}`" . $limitOffsetString;
+					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id} " . $limitOffsetString;
 		$data = mysql::select($query);
 		
 		return $data;
@@ -44,11 +44,12 @@ class services {
 	 * Paslaugų kiekio radimas
 	 * @return type
 	 */
-	public function getServicesListCount() {
-		$query = "  SELECT COUNT(`{$this->lazybos_bendroves_lentele}`.`kodas`) as `kiekis`
-					FROM `{$this->lazybos_bendroves_lentele}`";
+	public function getCitiesListCount($coutry_id) {
+
+		$query = "  SELECT COUNT(`{$this->cities_table}`.`id`) as `kiekis`
+					FROM `{$this->cities_table}`
+					WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id}";
 		$data = mysql::select($query);
-		
 		return $data[0]['kiekis'];
 	}
 	
@@ -73,10 +74,10 @@ class services {
 	 * @param type $id
 	 * @return type
 	 */
-	public function getService($id) {
+	public function getCity($id) {
 		$query = "  SELECT *
-					FROM `{$this->lazybos_bendroves_lentele}`
-					WHERE `kodas`='{$id}'";
+					FROM `{$this->cities_table}`
+					WHERE `id`='{$id}'";
 		$data = mysql::select($query);
 
 		return $data[0];
@@ -89,20 +90,26 @@ class services {
 	 */
 		//INSERT INTO `LAZYBOS_BENDROVES` (`pavadinimas`, `kodas`, `punktu_skaicius`, `pelnas`) VALUES
 
-	public function insertService($data) {
-		$query = "  INSERT INTO `{$this->lazybos_bendroves_lentele}`
+	public function insertCity($data, $countryId) {
+	    $dates = date("Y/m/d");
+
+		$query = "  INSERT INTO `{$this->cities_table}`
 								(
-									`pavadinimas`,
-									`kodas`,
-									`punktu_skaicius`,
-									`pelnas`
+									`name`,
+									`area`,
+									`population`,
+									`postal_code`,
+									`add_date`,
+									`fk_salys`
 								)
 								VALUES
 								(
-									'{$data['pavadinimas']}',
-									'{$data['kodas']}',
-									'{$data['punktu_skaicius']}',
-									'{$data['pelnas']}'
+									'{$data['name']}',
+									'{$data['area']}',
+									'{$data['population']}',
+									'{$data['postal_code']}',
+									'{$dates}',
+									'{$countryId}'
 								)";
 		mysql::query($query);
 		return mysql::getLastInsertedId();
@@ -112,13 +119,18 @@ class services {
 	 * Paslaugos atnaujinimas
 	 * @param type $data
 	 */
-	public function updateService($data) {
-		$query = "  UPDATE `{$this->lazybos_bendroves_lentele}`
-					SET    `pavadinimas`='{$data['pavadinimas']}',
-							`kodas`='{$data['kodas']}',
-							`punktu_skaicius`='{$data['punktu_skaicius']}',
-							`pelnas`='{$data['pelnas']}'
-					WHERE `kodas`='{$data['kodas']}'";
+	public function updateCity($data,$countryId,$id) {
+        $dates = date("Y/m/d");
+
+		$query = "  UPDATE `{$this->cities_table}`
+					SET    `name`='{$data['name']}',
+							`area`='{$data['area']}',
+							`population`='{$data['population']}',
+							`postal_code`='{$data['postal_code']}',
+							`add_date`='{$dates}',
+							`fk_salys`='{$countryId}'
+					WHERE `id`='{$id}'";
+
 		mysql::query($query);
 	}
 	
@@ -126,9 +138,9 @@ class services {
 	 * Paslaugos šalinimas
 	 * @param type $id
 	 */
-	public function deleteService($id) {
-		$query = "  DELETE FROM `{$this->lazybos_bendroves_lentele}`
-					WHERE `kodas`='{$id}'";
+	public function deleteCity($id) {
+		$query = "  DELETE FROM `{$this->cities_table}`
+					WHERE `id`='{$id}'";
 		mysql::query($query);
 	}
 	
