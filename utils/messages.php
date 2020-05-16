@@ -23,7 +23,6 @@ class messages
         <div class="successBox">
             <?php echo $this->module ?> was created
         </div>
-
     <?php }
     if (isset($_GET['edit_success'])){ ?>
         <div class="successBox">

@@ -14,9 +14,9 @@ if(!empty($id)) {
     $country=$countriesObj->getCountryById($city['fk_salys']);
     $citiesObj->deleteCity($id);
 
-
+    $removeSuccessParameter = '&remove_success=1';
 	// nukreipiame į paslaugų puslapį
-    header("Location: index.php?module={$module}&action=list&cid={$country['id']}");
+    header("Location: index.php?module={$module}&action=list&cid={$country['id']}{$removeSuccessParameter}");
     die();
 }
 	

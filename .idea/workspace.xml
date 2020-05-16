@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="586bf3fa-6b43-4b87-b3f7-d7bffa377c6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/messages.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controls/country_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controls/country_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controls/country_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/countries_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/countries_list.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/country_form.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/country_form.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/paging.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/utils/paging.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controls/cities_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/cities_create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controls/cities_delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/cities_delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controls/cities_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/cities_edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cities_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cities_list.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/city_form.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/city_form.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/utils/messages.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589543872467</updated>
       <workItem from="1589543874267" duration="10134000" />
-      <workItem from="1589626859194" duration="17163000" />
+      <workItem from="1589626859194" duration="18229000" />
     </task>
     <servers />
   </component>

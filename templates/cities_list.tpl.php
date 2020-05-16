@@ -7,12 +7,14 @@
 </div>
 <div class="float-clear"></div>
 
-<?php if(isset($_GET['remove_error'])) { ?>
-	<div class="errorBox">
-		City wasn't removed
-	</div>
 
-<?php  }
+<?php
+include 'utils/messages.php';
+$messagesObj = new messages("City");
+$messagesObj->contructMessage();
+
+?>
+<?php
  if(count($data)==0){
     ?>
     <div class="errorBox">
@@ -22,6 +24,8 @@
 }else {
 
     ?>
+
+
 <table class="listTable">
 	<tr>
 		<th>ID</th>
@@ -29,7 +33,7 @@
 		<th>Area</th>
 		<th>Population</th>
         <th>Postal Code</th>
-		<th></th>
+		<th>Actions</th>
 	</tr>
     <?php
 
@@ -42,8 +46,8 @@
                     . "<td>{$val['population']}</td>"
                     . "<td>{$val['postal_code']}</td>"
                     . "<td>"
-                    . "<a href='#' onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\", \"{$country['id']}\"); return false;' title=''>Remove</a>&nbsp;"
-                    . "<a href='index.php?module={$module}&action=edit&id={$val['id']}&countryname={$country['name']}' title=''>Edit</a>"
+                    .  "<button class=\"submit button\"  onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\", \"{$country['id']}\"); return false;' title=''>Remove</button>"
+                    .  "<button class=\"submit button\" onclick=\"location.href='index.php?module={$module}&action=edit&id={$val['id']}&countryname={$country['name']}'\" title=''>Edit</button>"
                     . "</td>"
                     . "</tr>";
             }
