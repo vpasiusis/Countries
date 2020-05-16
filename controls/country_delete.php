@@ -3,11 +3,12 @@
 include 'libraries/countries.class.php';
 $contractsObj = new countries();
 
-if(!empty($id)) {
-	// pašaliname užsakytas paslaugas
-	//$contractsObj->deleteOrderedServices($id);
+include 'libraries/cities.class.php';
+$citiesObj = new cities();
 
-	// šaliname sutartį
+if(!empty($id)) {
+
+    $citiesObj->deleteCityByCountry($id);
 	$contractsObj->deleteCountry($id);
 
 	// nukreipiame į sutarčių puslapį
