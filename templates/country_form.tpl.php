@@ -1,5 +1,4 @@
 <ul id="pagePath">
-	<li><a href="index.php">Start</a></li>
 	<li><a href="index.php?module=<?php echo $module; ?>&action=list">Countries</a></li>
 	<li><?php if(!empty($id)) echo "Editing Country"; else echo "New Country"; ?></li>
 </ul>

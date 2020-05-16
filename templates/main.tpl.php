@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="robots" content="noindex">
-		<title>Sporto lazybosIS</title>
+		<title>Countries</title>
         <link rel="stylesheet" type="text/css" href="scripts/datetimepicker/jquery.datetimepicker.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="style/main.css" media="screen" />
         <script type="text/javascript" src="scripts/jquery-1.12.0.min.js"></script>
@@ -19,8 +19,7 @@
 				<div id="topMenu">
 					<ul class="float-left">
 						<li><a href="index.php?module=country&action=list" title="Šalys"<?php if($module == 'country') { echo 'class="active"'; } ?>>Countries</a></li>
-						<li><a href="index.php?module=service&action=list" title="Miestai"<?php if($module == 'service') { echo 'class="active"'; } ?>>Cities</a></li>
-					</ul>
+						</ul>
 				</div>
 				<div id="contentMain">
 					<?php
