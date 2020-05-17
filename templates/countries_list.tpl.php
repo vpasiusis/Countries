@@ -1,8 +1,14 @@
 <ul id="pagePath">
-	<li><a href="">Countries</a></li>
+	<li><a href="index.php?module=country&action=list"<?php if($module == 'country') { echo 'class="active"'; } ?>>Countries</a></li>
+
+
 
 </ul>
 <div id="actions">
+    <form action="" method="post">
+        <input type="text" id="name" name="name" class="textbox textbox-200" value="">
+        <input type="submit" class="submit button" name="submit" value="Search">
+    </form>
 	<a href='index.php?module=<?php echo $module; ?>&action=create'>New country</a>
     <a href="index.php?module=country&action=list&sortByNameAZ=1"<?php if($module == 'country') { echo 'class="active"'; } ?>>Sort by name(a-z)</a>
     <a href="index.php?module=country&action=list&sortByNameZA=1"<?php if($module == 'country') { echo 'class="active"'; } ?>>Sort by name(z-a)</a>
@@ -10,11 +16,9 @@
 <div class="float-clear"></div>
 <?php
 include 'utils/messages.php';
-include 'utils/sorting.php';
 $messagesObj = new messages("Country");
 $messagesObj->contructMessage();
-$sorting = new sorting();
-$data = $sorting->sort($data);
+
 ?>
 
 <table class="table">

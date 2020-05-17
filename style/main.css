@@ -47,14 +47,15 @@ a:hover {
 	border: 1px solid #ddd;
 	padding: 12px 25px;
 	display: block;
+    font-size: 10px;
 	text-decoration: none;
 	color: #6e6e6e;
 	border-radius: 3px;
 	moz-border-radius: 3px;
 }
-
+S
 .button.large {
-	width: 100px;
+	width: 50px;
 }
 
 .button:hover {

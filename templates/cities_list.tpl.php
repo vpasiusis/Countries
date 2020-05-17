@@ -1,6 +1,6 @@
 <ul id="pagePath">
 	<li><a href="index.php?module=country&action=list">Back</a></li>
-    <li>Cities</li>
+    <li><a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>' title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>>Cities</a></li>
 </ul>
 <div id="actions">
 	<a href='index.php?module=<?php echo $module; ?>&action=create&countryname=<?php echo $country['name']; ?>'>New city</a>
@@ -25,9 +25,6 @@ $messagesObj->contructMessage();
 	</div>
 <?php
 }else {
-include 'utils/sorting.php';
-$sorting = new sorting();
-$data = $sorting->sort($data);
     ?>
 
 

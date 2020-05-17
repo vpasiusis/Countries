@@ -13,8 +13,14 @@ $elementCount = $countriesObj->getCountriesListCount();
 // suformuojame sąrašo puslapius
 $paging->process($elementCount, $pageId);
 // išrenkame nurodyto puslapio sutartis
-$data = $countriesObj->getCountriesList($paging->size, $paging->first);
-
+if (isset($_GET['sortByNameAZ'])) {
+    $data = $countriesObj->getCountriesList($paging->size, $paging->first,"ORDER BY name ASC");
+}
+else if (isset($_GET['sortByNameZA'])) {
+    $data = $countriesObj->getCountriesList($paging->size, $paging->first,"ORDER BY name DESC");
+}else{
+    $data = $countriesObj->getCountriesList($paging->size, $paging->first,null);
+}
 // įtraukiame šabloną
 include 'templates/countries_list.tpl.php';
 
