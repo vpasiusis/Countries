@@ -24,7 +24,7 @@ class cities {
 	 * @param type $offset
 	 * @return type
 	 */
-	public function getCitiesList($limit = null, $offset = null, $coutry_id) {
+	public function getCitiesList($limit = null, $offset = null, $coutry_id,$orderProp) {
 		$limitOffsetString = "";
 		if(isset($limit)) {
 			$limitOffsetString .= " LIMIT {$limit}";
@@ -34,7 +34,7 @@ class cities {
 		}
 		
 		$query = "  SELECT *
-					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id} " . $limitOffsetString;
+					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id} " .$orderProp.$limitOffsetString;
 		$data = mysql::select($query);
 		
 		return $data;
@@ -48,7 +48,7 @@ class cities {
 
 		$query = "  SELECT COUNT(`{$this->cities_table}`.`id`) as `kiekis`
 					FROM `{$this->cities_table}`
-					WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id}";
+					WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id} ";
 		$data = mysql::select($query);
 		return $data[0]['kiekis'];
 	}

@@ -17,7 +17,14 @@ $paging = new paging(config::NUMBER_OF_ROWS_IN_PAGE);
 $paging->process($elementCount, $pageId);
 
 // išrenkame nurodyto puslapio paslaugas
-$data = $citiesObj->getCitiesList($paging->size, $paging->first,$country_id);
+if (isset($_GET['sortByNameAZ'])) {
+    $data = $citiesObj->getCitiesList($paging->size, $paging->first, $country_id, "ORDER BY name ASC");
+}
+else if (isset($_GET['sortByNameZA'])) {
+    $data = $citiesObj->getCitiesList($paging->size, $paging->first,$country_id,"ORDER BY name DESC");
+}else{
+    $data = $citiesObj->getCitiesList($paging->size, $paging->first,$country_id,null);
+}
 $country = $countriesObj->getCountryById($country_id);
 
 // įtraukiame šabloną

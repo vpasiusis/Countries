@@ -26,7 +26,7 @@ class countries {
 	 */
 	//INSERT INTO `KLIENTAI` (`vardas`, `pavarde`, `statymu_kiekis`, `balansas`, `registravimo_data`, `asmens_kodas`, `telefonas`, `gimimo_data`, `ip`, `kliento_busena`, `fk_LAZYBOS_PUNKTASid_LAZYBOS_PUNKTAS`) VALUES
 
-	public function getCountriesList($limit, $offset) {
+	public function getCountriesList($limit, $offset,$orderProp) {
         $limitOffsetString = "";
         if(isset($limit)) {
             $limitOffsetString .= " LIMIT {$limit}";
@@ -36,11 +36,12 @@ class countries {
         }
 
         $query = "  SELECT *
-					FROM {$this->saliu_lentele}{$limitOffsetString}";
+					FROM {$this->saliu_lentele} {$orderProp} {$limitOffsetString}";
         $data = mysql::select($query);
-
 		return $data;
 	}
+
+
 	
 	/**
 	 * Sutarčių kiekio radimas
