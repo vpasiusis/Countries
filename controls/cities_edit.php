@@ -44,7 +44,8 @@ if(!empty($_POST['submit'])) {
 
 
 		// nukreipiame į paslaugų puslapį
-        header("Location: index.php?module={$module}&action=list&cid={$country['id']}");
+        $editSuccessParameter = '&edit_success=1';
+        header("Location: index.php?module={$module}&action=list&cid={$country['id']}{$editSuccessParameter}");
 
         die();
 	} else {

@@ -41,8 +41,8 @@ if(!empty($_POST['submit'])) {
 		// įrašome naują pasaugą ir gauname jos id
 		$dataPrepared['id'] = $citiesObj->insertCity($dataPrepared,$country['id']);
 
-
-		header("Location: index.php?module={$module}&action=list&cid={$country['id']}");
+        $createSuccessParameter="&create_success=1";
+		header("Location: index.php?module={$module}&action=list&cid={$country['id']}{$createSuccessParameter}");
 		die();
 	} else {
 		// gauname klaidų pranešimą

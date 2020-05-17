@@ -27,7 +27,7 @@
             </p>
             <p>
                 <label class="field" for="population">Population<?php echo in_array('population', $required) ? '<span> *</span>' : ''; ?></label>
-                <input type="text" id="population" name="population" class="textbox textbox-200" value="<?php echo isset($data['population']) ? $data['name'] : ''; ?>">
+                <input type="text" id="population" name="population" class="textbox textbox-200" value="<?php echo isset($data['population']) ? $data['population'] : ''; ?>">
                 <?php if(key_exists('population', $maxLengths)) echo "<span class='max-len'>(max {$maxLengths['population']} let.)</span>"; ?>
             </p>
             <p>

@@ -26,7 +26,7 @@ class countries {
 	 */
 	//INSERT INTO `KLIENTAI` (`vardas`, `pavarde`, `statymu_kiekis`, `balansas`, `registravimo_data`, `asmens_kodas`, `telefonas`, `gimimo_data`, `ip`, `kliento_busena`, `fk_LAZYBOS_PUNKTASid_LAZYBOS_PUNKTAS`) VALUES
 
-	public function getCountriesList($limit, $offset) {
+	public function getCountriesList($limit, $offset,$orderProp) {
         $limitOffsetString = "";
         if(isset($limit)) {
             $limitOffsetString .= " LIMIT {$limit}";
@@ -36,12 +36,32 @@ class countries {
         }
 
         $query = "  SELECT *
-					FROM {$this->saliu_lentele}{$limitOffsetString}";
+					FROM {$this->saliu_lentele} {$orderProp} {$limitOffsetString}";
         $data = mysql::select($query);
-
 		return $data;
 	}
-	
+
+//Select * from šalys where Concat(name, '', area, '', population) like "%89%"
+    public function getCountriesListFilteredCount($filter) {
+
+        $query = "  SELECT COUNT(`name`) as `kiekis`
+                FROM {$this->saliu_lentele} WHERE Concat(`id`,'',`name`,'',`area`,'',`population`,'',`phone_nr`) like $filter";
+        $data = mysql::select($query);
+        return $data[0]['kiekis'];
+    }
+    public function getCountriesListFiltered($limit, $offset, $orderProp, $filter) {
+        $limitOffsetString = "";
+        if(isset($limit)) {
+            $limitOffsetString .= " LIMIT {$limit}";
+        }
+        if(isset($offset)) {
+            $limitOffsetString .= " OFFSET {$offset}";
+        }
+        $query = "  SELECT *
+					FROM {$this->saliu_lentele} WHERE Concat(`id`,'',`name`,'',`area`,'',`population`,'',`phone_nr`) like $filter {$orderProp} {$limitOffsetString}";
+        $data = mysql::select($query);
+        return $data;
+    }
 	/**
 	 * Sutarčių kiekio radimas
 	 * @return type

@@ -47,19 +47,22 @@ a:hover {
 	border: 1px solid #ddd;
 	padding: 12px 25px;
 	display: block;
+    font-size: 10px;
 	text-decoration: none;
 	color: #6e6e6e;
 	border-radius: 3px;
 	moz-border-radius: 3px;
 }
-
+S
 .button.large {
-	width: 100px;
+	width: 50px;
 }
-
+.button:hover:disabled{
+    background-color: #fafafa;
+}
 .button:hover {
 	border: 1px solid #ddd;
-	background-color: #f6f6f6;
+	background-color: #f6860f;
 	cursor: pointer;
 }
 
@@ -459,6 +462,23 @@ fieldset .submit {
 }
 
 .errorBox ul li {
+    list-style: disc;
+    margin-left: 20px;
+}
+.successBox {
+    background-color: #16cb20;
+    text-align: left;
+    border: solid 1px #FBD3C6;
+    color: #000000;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.successBox ul {
+    margin-top: 5px;
+}
+
+.successBox ul li {
     list-style: disc;
     margin-left: 20px;
 }
