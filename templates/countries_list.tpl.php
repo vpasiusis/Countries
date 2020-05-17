@@ -5,13 +5,31 @@
 
 </ul>
 <div id="actions">
-    <form action="" method="post">
-        <input type="text" id="name" name="name" class="textbox textbox-200" value="">
-        <input type="submit" class="submit button" name="submit" value="Search">
-    </form>
+
+    <input type="text" id="search" onkeyup="success()" placeholder="Search by..." class="textbox textbox-200" value="">
+    <input type="submit" class="submit button" disabled="disabled" id="searchButton" onclick="searchReplace('country')" value="Search">
 	<a href='index.php?module=<?php echo $module; ?>&action=create'>New country</a>
-    <a href="index.php?module=country&action=list&sortByNameAZ=1"<?php if($module == 'country') { echo 'class="active"'; } ?>>Sort by name(a-z)</a>
-    <a href="index.php?module=country&action=list&sortByNameZA=1"<?php if($module == 'country') { echo 'class="active"'; } ?>>Sort by name(z-a)</a>
+    <?php
+    if(isset($_GET['text'])) {
+        ?>
+        <a href="index.php?module=country&action=list&sortByNameAZ=1&text=<?php echo $_GET['text']; ?>"<?php if ($module == 'country') {
+            echo 'class="active"';
+        } ?>>Sort by name(a-z)</a>
+        <a href="index.php?module=country&action=list&sortByNameZA=1&text=<?php echo $_GET['text']; ?>"<?php if ($module == 'country') {
+            echo 'class="active"';
+        } ?>>Sort by name(z-a)</a>
+        <?php
+    }else {
+        ?>
+        <a href="index.php?module=country&action=list&sortByNameAZ=1"<?php if ($module == 'country') {
+            echo 'class="active"';
+        } ?>>Sort by name(a-z)</a>
+        <a href="index.php?module=country&action=list&sortByNameZA=1"<?php if ($module == 'country') {
+            echo 'class="active"';
+        } ?>>Sort by name(z-a)</a>
+        <?php
+    }
+ ?>
 </div>
 <div class="float-clear"></div>
 <?php

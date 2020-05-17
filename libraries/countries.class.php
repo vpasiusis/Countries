@@ -41,8 +41,27 @@ class countries {
 		return $data;
 	}
 
+//Select * from šalys where Concat(name, '', area, '', population) like "%89%"
+    public function getCountriesListFilteredCount($filter) {
 
-	
+        $query = "  SELECT COUNT(`name`) as `kiekis`
+                FROM {$this->saliu_lentele} WHERE Concat(`id`,'',`name`,'',`area`,'',`population`,'',`phone_nr`) like $filter";
+        $data = mysql::select($query);
+        return $data[0]['kiekis'];
+    }
+    public function getCountriesListFiltered($limit, $offset, $orderProp, $filter) {
+        $limitOffsetString = "";
+        if(isset($limit)) {
+            $limitOffsetString .= " LIMIT {$limit}";
+        }
+        if(isset($offset)) {
+            $limitOffsetString .= " OFFSET {$offset}";
+        }
+        $query = "  SELECT *
+					FROM {$this->saliu_lentele} WHERE Concat(`id`,'',`name`,'',`area`,'',`population`,'',`phone_nr`) like $filter {$orderProp} {$limitOffsetString}";
+        $data = mysql::select($query);
+        return $data;
+    }
 	/**
 	 * Sutarčių kiekio radimas
 	 * @return type
