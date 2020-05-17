@@ -6,8 +6,8 @@
 </ul>
 <div id="actions">
 
-    <input type="text" id="search" onkeyup="success()" placeholder="Search by..." class="textbox textbox-200" value="">
-    <input type="submit" class="submit button" disabled="disabled" id="searchButton" onclick="searchReplace('country')" value="Search">
+    <input type="text" id="search" onkeyup="success()" placeholder="Search by..." class="textbox textbox-200" value="<?php if(isset($_GET['text'])) echo $_GET['text']; ?>">
+    <input type="submit" class="submit button" disabled="disabled" id="searchButton" onclick="searchReplace('country')">
 	<a href='index.php?module=<?php echo $module; ?>&action=create'>New country</a>
     <?php
     if(isset($_GET['text'])) {
@@ -37,7 +37,14 @@ include 'utils/messages.php';
 $messagesObj = new messages("Country");
 $messagesObj->contructMessage();
 
-?>
+if(count($data)==0){
+    ?>
+    <div class="errorBox">
+        No countries found
+    </div>
+    <?php
+}else {
+    ?>
 
 <table class="table">
     <thead>
@@ -72,8 +79,7 @@ $messagesObj->contructMessage();
     ?>
     </tbody>
 </table>
-
-
 <?php
+    }
 	include 'templates/paging.tpl.php';
 ?>

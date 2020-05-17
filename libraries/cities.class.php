@@ -24,7 +24,7 @@ class cities {
 	 * @param type $offset
 	 * @return type
 	 */
-	public function getCitiesList($limit = null, $offset = null, $coutry_id,$orderProp) {
+	public function getCitiesList($limit = null, $offset = null, $countryId,$orderProp) {
 		$limitOffsetString = "";
 		if(isset($limit)) {
 			$limitOffsetString .= " LIMIT {$limit}";
@@ -34,11 +34,31 @@ class cities {
 		}
 		
 		$query = "  SELECT *
-					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id} " .$orderProp.$limitOffsetString;
+					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$countryId} " .$orderProp.$limitOffsetString;
 		$data = mysql::select($query);
 		
 		return $data;
 	}
+    public function getCitiesListFilteredCount($filter,$countryId) {
+
+        $query = "  SELECT COUNT(`name`) as `kiekis`
+                FROM {$this->cities_table} WHERE `{$this->cities_table}`.`fk_salys`={$countryId} AND Concat(`id`,'',`name`,'',`area`,'',`population`,'',`postal_code`) like $filter";
+        $data = mysql::select($query);
+        return $data[0]['kiekis'];
+    }
+    public function getCitiesListFiltered($limit, $offset, $orderProp, $filter,$countryId) {
+        $limitOffsetString = "";
+        if(isset($limit)) {
+            $limitOffsetString .= " LIMIT {$limit}";
+        }
+        if(isset($offset)) {
+            $limitOffsetString .= " OFFSET {$offset}";
+        }
+        $query = "  SELECT *
+					FROM {$this->cities_table} WHERE `{$this->cities_table}`.`fk_salys`={$countryId} AND Concat(`id`,'',`name`,'',`area`,'',`population`,'',`postal_code`) like $filter {$orderProp} {$limitOffsetString}";
+		$data = mysql::select($query);
+        return $data;
+    }
 	
 	/**
 	 * Paslaugų kiekio radimas

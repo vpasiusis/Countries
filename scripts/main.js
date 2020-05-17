@@ -85,3 +85,8 @@ function searchReplace(module) {
     window.location.replace("index.php?module=" + module + "&action=list&text=" + text);
 
 }
+function searchReplaceCity(module,countryId) {
+    var text = document.getElementById("search").value;
+    window.location.replace("index.php?module=" + module + "&action=list&cid="+countryId+"&text=" + text);
+
+}

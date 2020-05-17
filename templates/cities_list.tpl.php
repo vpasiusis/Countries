@@ -3,10 +3,32 @@
     <li><a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>' title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>>Cities</a></li>
 </ul>
 <div id="actions">
-	<a href='index.php?module=<?php echo $module; ?>&action=create&countryname=<?php echo $country['name']; ?>'>New city</a>
-    <a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameAZ=1' title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>>Sort by name(a-z)</a>
-    <a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameZA=1' title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>>Sort by name(z-a)</a>
 
+    <input type="text" id="search" onkeyup="success()" placeholder="Search by..." class="textbox textbox-200" value="<?php if(isset($_GET['text'])) echo $_GET['text']; ?>">
+    <input type="submit" class="submit button" disabled="disabled" id="searchButton" onclick="searchReplaceCity('cities',<?php echo $country['id']; ?>)" value="Search">
+
+    <a href='index.php?module=<?php echo $module; ?>&action=create&countryname=<?php echo $country['name']; ?>'>New city</a>
+    <?php
+    if(isset($_GET['text'])) {
+        ?>
+        <a href="index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameAZ=1&text=<?php echo $_GET['text']; ?>"<?php if ($module == 'cities') {
+            echo 'class="active"';
+        } ?>>Sort by name(a-z)</a>
+        <a href="index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameZA=1&text=<?php echo $_GET['text']; ?>"<?php if ($module == 'cities') {
+            echo 'class="active"';
+        } ?>>Sort by name(z-a)</a>
+        <?php
+    }else {
+        ?>
+        <a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameAZ=1'<?php if ($module == 'cities') {
+            echo 'class="active"';
+        } ?>>Sort by name(a-z)</a>
+        <a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameZA=1'<?php if ($module == 'cities') {
+            echo 'class="active"';
+        } ?>>Sort by name(z-a)</a>
+        <?php
+    }
+    ?>
 </div>
 <div class="float-clear"></div>
 
@@ -16,9 +38,7 @@ include 'utils/messages.php';
 $messagesObj = new messages("City");
 $messagesObj->contructMessage();
 
-?>
-<?php
- if(count($data)==0){
+if(count($data)==0){
     ?>
     <div class="errorBox">
 		No cities found
