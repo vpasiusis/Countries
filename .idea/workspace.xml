@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="586bf3fa-6b43-4b87-b3f7-d7bffa377c6f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controls/cities_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/cities_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controls/country_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/controls/country_list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libraries/cities.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/cities.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libraries/countries.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/countries.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cities_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cities_list.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/countries_list.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/countries_list.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/sorting.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

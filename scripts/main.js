@@ -73,3 +73,15 @@ function showConfirmDialog(module, removeId) {
         window.location.replace("index.php?module=" + module + "&action=delete&id=" + removeId);
     }
 }
+function success() {
+    if(document.getElementById("search").value==="") {
+        document.getElementById('searchButton').disabled = true;
+    } else {
+        document.getElementById('searchButton').disabled = false;
+    }
+}
+function searchReplace(module) {
+    var text = document.getElementById("search").value;
+    window.location.replace("index.php?module=" + module + "&action=list&text=" + text);
+
+}

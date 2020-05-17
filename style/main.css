@@ -57,7 +57,9 @@ S
 .button.large {
 	width: 50px;
 }
-
+.button:hover:disabled{
+    background-color: #fafafa;
+}
 .button:hover {
 	border: 1px solid #ddd;
 	background-color: #f6860f;
