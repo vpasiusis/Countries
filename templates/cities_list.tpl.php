@@ -4,6 +4,9 @@
 </ul>
 <div id="actions">
 	<a href='index.php?module=<?php echo $module; ?>&action=create&countryname=<?php echo $country['name']; ?>'>New city</a>
+    <a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameAZ=1' title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>>Sort by name(a-z)</a>
+    <a href='index.php?module=cities&action=list&cid=<?php echo $country['id']; ?>&sortByNameZA=1' title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>>Sort by name(z-a)</a>
+
 </div>
 <div class="float-clear"></div>
 
@@ -22,7 +25,9 @@ $messagesObj->contructMessage();
 	</div>
 <?php
 }else {
-
+include 'utils/sorting.php';
+$sorting = new sorting();
+$data = $sorting->sort($data);
     ?>
 
 
