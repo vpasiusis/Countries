@@ -12,20 +12,13 @@ class paging {
 	
 	public $data = array();
 	
-	/**
-	* @desc Konstruktorius
-	* @param int kiek įrašų rodoma viename puslapyje
-	*/
+
 	public function __construct($rowsPerPage) {
 		$this->size = $rowsPerPage;
 		$this->pageRange = 5;
 	}
 	
-	/**
-	* @desc Puslapių sudarymas
-	* @param int iš viso įrašų sąraše
-	* @param int pasirinktas puslapis
-	*/
+
 	public function process($total, $currentPage) {
 		// suskaičiuojame puslapių kiekį
 		$pageCount = ceil($total / $this->size);

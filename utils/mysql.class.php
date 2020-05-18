@@ -1,11 +1,5 @@
 <?php 
-/**
- * Database wrapper for a MySQL with PHP tutorial
- * 
- * @copyright Eran Galperin
- * @license MIT License
- * @see http://www.binpress.com/tutorial/using-php-with-mysql-the-right-way/17
- */
+
 class mysql {
     // The database connection
     protected static $connection;
@@ -26,7 +20,7 @@ class mysql {
 					printf("Error loading character set: %s\n", self::$connection->error);
 				}
 			} else {
-				// Handle error - notify administrator, log to a file, show an error screen, etc.
+                printf("Error with connecting to database: %s\n", self::$connection->error);
 				return false;
 			}
         }

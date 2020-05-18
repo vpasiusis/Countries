@@ -1,32 +1,16 @@
 <?php
-/**
- * Sutarčių redagavimo klasė
- *
- * @author ISK
- */
 
 class countries {
 
 	private $saliu_lentele = '';
-	private $lazybos_lentele = '';
-	private $kliento_busenos_lentele = '';
-	private $uzsakytos_paslaugos_lentele = '';
-	private $aiksteles_lentele = '';
-	private $paslaugu_kainos_lentele = '';
 	
 	public function __construct() {
 		$this->saliu_lentele = config::DB_PREFIX . 'šalys';
 	}
 	
-	/**
-	 * Sutarčių sąrašo išrinkimas
-	 * @param type $limit
-	 * @param type $offset
-	 * @return type
-	 */
-	//INSERT INTO `KLIENTAI` (`vardas`, `pavarde`, `statymu_kiekis`, `balansas`, `registravimo_data`, `asmens_kodas`, `telefonas`, `gimimo_data`, `ip`, `kliento_busena`, `fk_LAZYBOS_PUNKTASid_LAZYBOS_PUNKTAS`) VALUES
 
-	public function getCountriesList($limit, $offset,$orderProp) {
+
+	public function getCountriesList($limit, $offset,$orderProp,$dates) {
         $limitOffsetString = "";
         if(isset($limit)) {
             $limitOffsetString .= " LIMIT {$limit}";
@@ -36,12 +20,11 @@ class countries {
         }
 
         $query = "  SELECT *
-					FROM {$this->saliu_lentele} {$orderProp} {$limitOffsetString}";
+					FROM {$this->saliu_lentele} {$orderProp} {$dates} {$limitOffsetString}";
         $data = mysql::select($query);
 		return $data;
 	}
 
-//Select * from šalys where Concat(name, '', area, '', population) like "%89%"
     public function getCountriesListFilteredCount($filter) {
 
         $query = "  SELECT COUNT(`name`) as `kiekis`
@@ -62,12 +45,9 @@ class countries {
         $data = mysql::select($query);
         return $data;
     }
-	/**
-	 * Sutarčių kiekio radimas
-	 * @return type
-	 */
-	public function getCountriesListCount() {
-		$query = "  SELECT COUNT(`name`) AS `kiekis` FROM {$this->saliu_lentele}";
+
+	public function getCountriesListCount($dates) {
+		$query = "  SELECT COUNT(`name`) AS `kiekis` FROM {$this->saliu_lentele} $dates";
 		$data = mysql::select($query);
 		return $data[0]['kiekis'];
 	}
@@ -87,12 +67,7 @@ class countries {
         return $data[0];
     }
 	
-	
-	
-	/**
-	 * Sutarties atnaujinimas
-	 * @param type $data
-	 */
+
 	public function updateCountry($data) {
 		$query = "  UPDATE `{$this->saliu_lentele}`
 					SET    `name`='{$data['name']}',
@@ -103,13 +78,6 @@ class countries {
 					WHERE `id`='{$data['id']}'";
 		mysql::query($query);
 	}
-	
-	/**
-	 * Sutarties įrašymas
-	 * @param type $data
-	 */
-	//INSERT INTO `KLIENTAI` (`vardas`, `pavarde`, `statymu_kiekis`, `balansas`, `registravimo_data`, `asmens_kodas`, `telefonas`, `gimimo_data`,
-	// `ip`, `kliento_busena`, `fk_LAZYBOS_PUNKTASid_LAZYBOS_PUNKTAS`) VALUES
 
 	public function insertCountry($data) {
 	    $datee=date("Y/m/d");
@@ -131,11 +99,7 @@ class countries {
 								)";
 		mysql::query($query);
 	}
-	
-	/**
-	 * Sutarties šalinimas
-	 * @param type $id
-	 */
+
 	public function deleteCountry($id) {
 		$query = "  DELETE FROM `{$this->saliu_lentele}`
 					WHERE `id`='{$id}'";

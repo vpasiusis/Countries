@@ -1,20 +1,6 @@
 <?php
-/**
- * Pork Formvalidator. validates fields by regexes and can sanatize them. Uses PHP filter_var built-in functions and extra regexes 
- * @package pork
- */
 
 
-/**
- * Pork.FormValidator
- * Validates arrays or properties by setting up simple arrays
- * 
- * @package pork
- * @author SchizoDuckie
- * @copyright SchizoDuckie 2009
- * @version 1.0
- * @access public
- */
 class validator
 {
     public $regexes = Array(
@@ -38,11 +24,7 @@ class validator
 	
     private $validations, $mandatories, $lengths, $errors, $corrects, $fields;
 
-	/**
-	 * Konstruktorius
-	 * @param type $validations
-	 * @param type $mandatories
-	 */
+
     public function __construct($validations = array(), $mandatories = array(), $lengths = array()) {
     	$this->validations = $validations;
     	$this->mandatories = $mandatories;
@@ -51,11 +33,7 @@ class validator
     	$this->corrects = array();
     }
 
-    /**
-	 * Patikrinamas reikšių masyvas
-	 * @param type $items
-	 * @return type
-	 */
+
     public function validate($items) {
     	$this->fields = $items;
     	$havefailures = false;
@@ -119,10 +97,7 @@ class validator
 		return !$havefailures;
 	}
 	
-    /**
-	 * Gaunamas klaidos pranešimas
-	 * @return type
-	 */
+
     public function getErrorHTML() {
     	if(!empty($this->errors)) {
     		$errors = array();
@@ -135,21 +110,12 @@ class validator
     	return($output);
     }
 
-	/**
-	 * Į klaidų masyvą įtraukiama klaida
-	 * @param type $field
-	 * @param type $type
-	 */
+
     private function addError($field, $type='string') {
     	$this->errors[$field] = $type;
     }
 
-    /**
-	 * Pagal nurodytą tipą patikrinama viena reikšmė
-	 * @param type $var
-	 * @param type $type
-	 * @return type
-	 */
+
     public function validateItem($var, $type) {
 		if(array_key_exists($type, $this->regexes)) {
     		$returnval =  filter_var($var, FILTER_VALIDATE_REGEXP, array("options"=> array("regexp"=>'!'.$this->regexes[$type].'!i'))) !== false;

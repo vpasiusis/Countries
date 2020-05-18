@@ -1,30 +1,17 @@
 <?php
-/**
- * Papildomų paslaugų redagavimo klasė
- *
- * @author ISK
- */
 
 class cities {
 	
 	
 	private $cities_table = '';
-	private $sutartys_lentele = '';
-	private $paslaugu_kainos_lentele = '';
-	private $uzsakytos_lazybos_bendroves_lentele = '';
 	
 	public function __construct() {
 		$this->cities_table = config::DB_PREFIX . 'miestai';
 	
 	}
 
-	/**
-	 * Paslaugų sąrašo išrinkimas
-	 * @param type $limit
-	 * @param type $offset
-	 * @return type
-	 */
-	public function getCitiesList($limit = null, $offset = null, $countryId,$orderProp) {
+
+	public function getCitiesList($limit = null, $offset = null, $countryId,$orderProp,$clause) {
 		$limitOffsetString = "";
 		if(isset($limit)) {
 			$limitOffsetString .= " LIMIT {$limit}";
@@ -32,11 +19,9 @@ class cities {
 		if(isset($offset)) {
 			$limitOffsetString .= " OFFSET {$offset}";
 		}
-		
 		$query = "  SELECT *
-					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$countryId} " .$orderProp.$limitOffsetString;
+					FROM `{$this->cities_table}` WHERE `{$this->cities_table}`.`fk_salys`={$countryId}  $orderProp $clause $limitOffsetString ";
 		$data = mysql::select($query);
-		
 		return $data;
 	}
     public function getCitiesListFilteredCount($filter,$countryId) {
@@ -60,15 +45,12 @@ class cities {
         return $data;
     }
 	
-	/**
-	 * Paslaugų kiekio radimas
-	 * @return type
-	 */
-	public function getCitiesListCount($coutry_id) {
+
+	public function getCitiesListCount($coutry_id,$clause) {
 
 		$query = "  SELECT COUNT(`{$this->cities_table}`.`id`) as `kiekis`
 					FROM `{$this->cities_table}`
-					WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id} ";
+					WHERE `{$this->cities_table}`.`fk_salys`={$coutry_id}.$clause";
 		$data = mysql::select($query);
 		return $data[0]['kiekis'];
 	}

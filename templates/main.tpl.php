@@ -23,7 +23,6 @@
 				</div>
 				<div id="contentMain">
 					<?php
-						// įtraukiame veiksmų failą
 						if(file_exists($actionFile)) {
 							include $actionFile;
 						}

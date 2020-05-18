@@ -2,12 +2,12 @@
 @import url("reset.css");
 
 body {
-	color: #6e6e6e; /* teksto spalva */
-	font-family: Verdana, Geneva, sans-serif; /* šriftas */
-	font-size: 12px; /* teksto dydis */
+	color: #6e6e6e;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
 	background-color: #e3e3e3;
 	width: 900px;
-	margin: 0px auto; /* bloko centravimas puslapio viduje */
+	margin: 0px auto;
 }
 
 a {
@@ -66,11 +66,10 @@ S
 	cursor: pointer;
 }
 
-/* viršutinė puslapio dalis */
 #header {
 	width: 900px;
 	height: 70px;
-	background-color: #fff;
+	background-color: #bebeff;
 	border: 1px solid #c0c0c0; /* rėmelis */
 	float: left;
 }

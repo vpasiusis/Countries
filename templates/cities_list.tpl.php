@@ -6,7 +6,7 @@
 
     <input type="text" id="search" onkeyup="success()" placeholder="Search by..." class="textbox textbox-200" value="<?php if(isset($_GET['text'])) echo $_GET['text']; ?>">
     <input type="submit" class="submit button" disabled="disabled" id="searchButton" onclick="searchReplaceCity('cities',<?php echo $country['id']; ?>)" value="Search">
-
+    <a href="index.php?module=cities&action=filter_date&cid=<?php echo $country['id']; ?>">Filter By Date</a>
     <a href='index.php?module=<?php echo $module; ?>&action=create&countryname=<?php echo $country['name']; ?>'>New city</a>
     <?php
     if(isset($_GET['text'])) {
@@ -37,7 +37,14 @@
 include 'utils/messages.php';
 $messagesObj = new messages("City");
 $messagesObj->contructMessage();
+if(isset($_GET['start_date']) or isset($_GET['end_date'])){?>
+    <div class="successBox">
+        Cities filtered by date
+    </div>
 
+    <?php
+
+}
 if(count($data)==0){
     ?>
     <div class="errorBox">
