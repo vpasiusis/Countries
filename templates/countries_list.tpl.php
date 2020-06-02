@@ -67,21 +67,22 @@ if(count($data)==0){
     </thead>
     <tbody>
     <?php
-    // suformuojame lentelę
     foreach($data as $key => $val) {
         echo
-            "<tr class='linker' onclick=\"location . href = 'index.php?module=cities&action=list&cid={$val['id']}'\">"
+            "<tr class='linker' onclick=\"location.href = 'index.php?module=cities&action=list&cid={$val['id']}'\">"
             . "<td>{$val['id']}</td>"
             . "<td>{$val['name']}</td>"
             . "<td>{$val['population']}</td>"
             . "<td>{$val['area']}</td>"
             . "<td>{$val['phone_nr']}</td>"
-            . "<td>"
+            . "<td class='unclick' onclick=event.stopPropagation()>"
             .   "<button class=\"submit button\" onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\"); return false;' title='' class=\"btn btn-info\">Remove</button>"
             .   "<button class=\"submit button\" onclick=\"location.href='index.php?module={$module}&action=edit&id={$val['id']}'\" title=''>Edit</button>"
             . "</td>"
-           . "</tr>";
+            . "</tr>";
+
     }
+    //'<form type="POST"><input type="hidden" name="whatever" value="$row['id']"><input type="submit" name="submit_btn" value="accept"></form>' . "</td>";
     ?>
     </tbody>
 </table>

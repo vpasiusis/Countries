@@ -128,7 +128,9 @@ S
     cursor: pointer;
     background-color: #FBD3C6;
 }
-
+.unclick:hover{
+    cursor: default;
+}
 /* pradinio puslapio meniu */
 #homeMenu {
     width: 100%;
