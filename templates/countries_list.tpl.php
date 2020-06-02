@@ -63,7 +63,6 @@ if(count($data)==0){
         <th>Area(squared km)</th>
         <th>Phone nr.</th>
         <th>Actions</th>
-        <th>Cities</th>
     </tr>
     </thead>
     <tbody>
@@ -71,7 +70,7 @@ if(count($data)==0){
     // suformuojame lentelę
     foreach($data as $key => $val) {
         echo
-            "<tr>"
+            "<tr class='linker' onclick=\"location . href = 'index.php?module=cities&action=list&cid={$val['id']}'\">"
             . "<td>{$val['id']}</td>"
             . "<td>{$val['name']}</td>"
             . "<td>{$val['population']}</td>"
@@ -81,8 +80,7 @@ if(count($data)==0){
             .   "<button class=\"submit button\" onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\"); return false;' title='' class=\"btn btn-info\">Remove</button>"
             .   "<button class=\"submit button\" onclick=\"location.href='index.php?module={$module}&action=edit&id={$val['id']}'\" title=''>Edit</button>"
             . "</td>"
-            . "<td><button class=\"submit button\" onclick=\"location.href='index.php?module=cities&action=list&cid={$val['id']}'\" title=\"Miestai\"<?php if($module == 'cities') { echo 'class=\"active\"'; } ?>Cities</button></td>"
-            . "</tr>";
+           . "</tr>";
     }
     ?>
     </tbody>

@@ -124,6 +124,10 @@ S
 #topMenu li a.active:hover {
     border-bottom: 1px solid #ca4c44;
 }
+.linker:hover{
+    cursor: pointer;
+    background-color: #FBD3C6;
+}
 
 /* pradinio puslapio meniu */
 #homeMenu {
