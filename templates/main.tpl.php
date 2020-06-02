@@ -25,7 +25,10 @@
 					<?php
 						if(file_exists($actionFile)) {
 							include $actionFile;
-						}
+						}else{
+                            $actionFile="controls/country_list.php";
+                            include $actionFile;
+                        }
 					?>
 					<div class="float-clear"></div>
 				</div>
