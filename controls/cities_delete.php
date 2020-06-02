@@ -6,10 +6,9 @@ $citiesObj = new cities();
 $countriesObj = new countries();
 
 
-if(!empty($id)) {
+if(isset($_POST['delete_city_btn'])) {
 
     $city = $citiesObj -> getCity($id);
-
     $country=$countriesObj->getCountryById($city['fk_salys']);
     $citiesObj->deleteCity($id);
 

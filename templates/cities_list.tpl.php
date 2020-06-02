@@ -75,8 +75,8 @@ if(count($data)==0){
                     . "<td>{$val['population']}</td>"
                     . "<td>{$val['postal_code']}</td>"
                     . "<td>"
-                    .  "<button class=\"submit button\"  onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\", \"{$country['id']}\"); return false;' title=''>Remove</button>"
-                    .  "<button class=\"submit button\" onclick=\"location.href='index.php?module={$module}&action=edit&id={$val['id']}&countryname={$country['name']}'\" title=''>Edit</button>"
+                    .   "<form action=\"index.php?module={$module}&action=edit&id={$val['id']}&countryname={$country['name']}\" method=\"post\"><button class=\"submit button\" type=\"submit\" name=\"edit_city_btn\">Edit</button></form>"
+                    .   "<form action=\"index.php?module={$module}&action=delete&id={$val['id']}\" method=\"post\"><button class=\"submit button\" type=\"submit\" onclick=\"return confirm('Ar tikrai norite pašalinti?')\" name=\"delete_city_btn\">Delete</button></form>"
                     . "</td>"
                     . "</tr>";
             }

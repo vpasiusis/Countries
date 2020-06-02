@@ -29,9 +29,6 @@ if(!empty($_POST['submit'])) {
 		$dataPrepared = $validator->preparePostFieldsForSQL();
 
         $countryObj->updateCountry($dataPrepared);
-
-
-
 		if($formErrors == null) {
             $editSuccessParameter = '&edit_success=1';
 			header("Location: index.php?module={$module}&action=list{$editSuccessParameter}");
@@ -42,11 +39,12 @@ if(!empty($_POST['submit'])) {
         $data = $_POST;
 	}
 } else {
-	$data = $countryObj->getCountryById($id);
+    if(isset($_POST['edit_country_btn'])){
+	    $data = $countryObj->getCountryById($id);
+    }
 	
 }
 
-$data['editing'] = 1;
 
 include 'templates/country_form.tpl.php';
 

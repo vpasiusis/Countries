@@ -45,7 +45,7 @@ if(!empty($_POST['submit'])) {
 
 	}
 } else {
-	if(!empty($id)) {
+	if(isset($_POST['edit_city_btn'])) {
 		$data = $citiesObj->getCity($id);
 		
 	

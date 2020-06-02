@@ -76,17 +76,17 @@ if(count($data)==0){
             . "<td>{$val['area']}</td>"
             . "<td>{$val['phone_nr']}</td>"
             . "<td class='unclick' onclick=event.stopPropagation()>"
-            .   "<button class=\"submit button\" onclick='showConfirmDialog(\"{$module}\", \"{$val['id']}\"); return false;' title='' class=\"btn btn-info\">Remove</button>"
-            .   "<button class=\"submit button\" onclick=\"location.href='index.php?module={$module}&action=edit&id={$val['id']}'\" title=''>Edit</button>"
+            .   "<form action=\"index.php?module={$module}&action=edit&id={$val['id']}\" method=\"post\"><button class=\"submit button\" type=\"submit\" name=\"edit_country_btn\">Edit</button></form>"
+            .   "<form action=\"index.php?module={$module}&action=delete&id={$val['id']}\" method=\"post\"><button class=\"submit button\" type=\"submit\" onclick=\"return confirm('Ar tikrai norite pašalinti?')\" name=\"delete_country_btn\">Delete</button></form>"
             . "</td>"
             . "</tr>";
-
     }
-    //'<form type="POST"><input type="hidden" name="whatever" value="$row['id']"><input type="submit" name="submit_btn" value="accept"></form>' . "</td>";
-    ?>
+
+     ?>
     </tbody>
 </table>
 <?php
+
     }
 	include 'templates/paging.tpl.php';
 ?>
