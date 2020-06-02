@@ -41,7 +41,7 @@ if(!empty($_POST['submit'])) {
         die();
 	} else {
 		$formErrors = $validator->getErrorHTML();
-
+        $data = $_POST;
 
 	}
 } else {

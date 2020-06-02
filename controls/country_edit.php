@@ -39,7 +39,7 @@ if(!empty($_POST['submit'])) {
 		}
 	} else {
 		$formErrors = $validator->getErrorHTML();
-
+        $data = $_POST;
 	}
 } else {
 	$data = $countryObj->getCountryById($id);
